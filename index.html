@@ -317,8 +317,9 @@
 
         .modal-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
             margin-top: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .modal-btn {
@@ -340,6 +341,11 @@
         .btn-secondary {
             background: #f0f0f0;
             color: #8b4513;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
         }
 
         .modal-btn:hover {
@@ -384,6 +390,32 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
+        .delivery-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .driver-btn {
+            background: white;
+            color: #8b4513;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .driver-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: #f8f4e6;
+        }
+
         /* Footer */
         footer {
             background: #8b4513;
@@ -406,6 +438,16 @@
             
             .menu-items {
                 grid-template-columns: 1fr;
+            }
+
+            .delivery-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-btn, .driver-btn {
+                width: 100%;
+                max-width: 300px;
             }
         }
 
@@ -469,50 +511,50 @@
                     <p>סלטים מרוקאיים מסורתיים בטעמים אותנטיים</p>
                 </div>
                 <div class="menu-items">
-                    <div class="menu-item" data-name="מטבוחה" data-price="18">
+                    <div class="menu-item" data-name="מטבוחה" data-price="30">
                         <h4>מטבוחה</h4>
                         <p>סלט חצילים וגמבה מבושל ברוטב עגבניות עשיר</p>
-                        <div class="price">₪18</div>
+                        <div class="price">₪30</div>
                         <div class="quantity-controls">
                             <button class="quantity-btn minus" onclick="updateQuantity('מטבוחה', -1)">-</button>
                             <span class="quantity-display" id="qty-מטבוחה">0</span>
                             <button class="quantity-btn plus" onclick="updateQuantity('מטבוחה', 1)">+</button>
                         </div>
                     </div>
-                    <div class="menu-item" data-name="גזר מרוקאי" data-price="15">
+                    <div class="menu-item" data-name="גזר מרוקאי" data-price="25">
                         <h4>גזר מרוקאי</h4>
                         <p>גזר מתוק ומתובל בכמון וכוסברה טרייה</p>
-                        <div class="price">₪15</div>
+                        <div class="price">₪35</div>
                         <div class="quantity-controls">
                             <button class="quantity-btn minus" onclick="updateQuantity('גזר מרוקאי', -1)">-</button>
                             <span class="quantity-display" id="qty-גזר מרוקאי">0</span>
                             <button class="quantity-btn plus" onclick="updateQuantity('גזר מרוקאי', 1)">+</button>
                         </div>
                     </div>
-                    <div class="menu-item" data-name="זיתים ברוטב" data-price="16">
+                    <div class="menu-item" data-name="זיתים ברוטב" data-price="28">
                         <h4>זיתים ברוטב</h4>
                         <p>זיתים טריים ברוטב שמן זית ותבלינים</p>
-                        <div class="price">₪16</div>
+                        <div class="price">₪45</div>
                         <div class="quantity-controls">
                             <button class="quantity-btn minus" onclick="updateQuantity('זיתים ברוטב', -1)">-</button>
                             <span class="quantity-display" id="qty-זיתים ברוטב">0</span>
                             <button class="quantity-btn plus" onclick="updateQuantity('זיתים ברוטב', 1)">+</button>
                         </div>
                     </div>
-                    <div class="menu-item" data-name="סלק מבושל" data-price="14">
+                    <div class="menu-item" data-name="סלק מבושל" data-price="24">
                         <h4>סלק מבושל</h4>
                         <p>סלק רך ומתובל בשמן זית ועשבי תיבול</p>
-                        <div class="price">₪14</div>
+                        <div class="price">₪35</div>
                         <div class="quantity-controls">
                             <button class="quantity-btn minus" onclick="updateQuantity('סלק מבושל', -1)">-</button>
                             <span class="quantity-display" id="qty-סלק מבושל">0</span>
                             <button class="quantity-btn plus" onclick="updateQuantity('סלק מבושל', 1)">+</button>
                         </div>
                     </div>
-                    <div class="menu-item" data-name="גרגירי חומוס מרוקאי" data-price="17">
+                    <div class="menu-item" data-name="גרגירי חומוס מרוקאי" data-price="29">
                         <h4>גרגירי חומוס מרוקאי</h4>
                         <p>חומוס מבושל בתבלינים מרוקאיים מיוחדים</p>
-                        <div class="price">₪17</div>
+                        <div class="price">₪40</div>
                         <div class="quantity-controls">
                             <button class="quantity-btn minus" onclick="updateQuantity('גרגירי חומוס מרוקאי', -1)">-</button>
                             <span class="quantity-display" id="qty-גרגירי חומוס מרוקאי">0</span>
@@ -528,30 +570,30 @@
                     <p>מנות פתיחה חמות ומזינות</p>
                 </div>
                 <div class="menu-items">
-                    <div class="menu-item" data-name="פשטידה" data-price="25">
+                    <div class="menu-item" data-name="פשטידה" data-price="43">
                         <h4>פשטידה</h4>
                         <p>פשטידה מרוקאית מסורתית עם ירקות ועשבי תיבול</p>
-                        <div class="price">₪25</div>
+                        <div class="price">₪40</div>
                         <div class="quantity-controls">
                             <button class="quantity-btn minus" onclick="updateQuantity('פשטידה', -1)">-</button>
                             <span class="quantity-display" id="qty-פשטידה">0</span>
                             <button class="quantity-btn plus" onclick="updateQuantity('פשטידה', 1)">+</button>
                         </div>
                     </div>
-                    <div class="menu-item" data-name="משה בתיבה" data-price="28">
+                    <div class="menu-item" data-name="משה בתיבה" data-price="48">
                         <h4>משה בתיבה</h4>
                         <p>מנה מרוקאית מיוחדת עם ירקות ובשר</p>
-                        <div class="price">₪28</div>
+                        <div class="price">₪40</div>
                         <div class="quantity-controls">
                             <button class="quantity-btn minus" onclick="updateQuantity('משה בתיבה', -1)">-</button>
                             <span class="quantity-display" id="qty-משה בתיבה">0</span>
                             <button class="quantity-btn plus" onclick="updateQuantity('משה בתיבה', 1)">+</button>
                         </div>
                     </div>
-                    <div class="menu-item" data-name="איטריות מבושלות" data-price="22">
+                    <div class="menu-item" data-name="איטריות מבושלות" data-price="38">
                         <h4>איטריות מבושלות</h4>
                         <p>איטריות דקות ברוטב עגבניות ותבלינים</p>
-                        <div class="price">₪22</div>
+                        <div class="price">₪38</div>
                         <div class="quantity-controls">
                             <button class="quantity-btn minus" onclick="updateQuantity('איטריות מבושלות', -1)">-</button>
                             <span class="quantity-display" id="qty-איטריות מבושלות">0</span>
@@ -567,50 +609,50 @@
                     <p>המנות הראשיות שלנו - מוכנות באהבה</p>
                 </div>
                 <div class="menu-items">
-                    <div class="menu-item" data-name="כנפיים ברוטב" data-price="35">
+                    <div class="menu-item" data-name="כנפיים ברוטב" data-price="59">
                         <h4>כנפיים ברוטב</h4>
                         <p>כנפי עוף רכות ברוטב עגבניות עשיר ומתובל</p>
-                        <div class="price">₪35</div>
+                        <div class="price">₪59</div>
                         <div class="quantity-controls">
                             <button class="quantity-btn minus" onclick="updateQuantity('כנפיים ברוטב', -1)">-</button>
                             <span class="quantity-display" id="qty-כנפיים ברוטב">0</span>
                             <button class="quantity-btn plus" onclick="updateQuantity('כנפיים ברוטב', 1)">+</button>
                         </div>
                     </div>
-                    <div class="menu-item" data-name="שניצלונים מטוגנים" data-price="32">
+                    <div class="menu-item" data-name="שניצלונים מטוגנים" data-price="43">
                         <h4>שניצלונים מטוגנים</h4>
                         <p>שניצלונים זהובים וקריספיים בסגנון מרוקאי</p>
-                        <div class="price">₪32</div>
+                        <div class="price">₪79</div>
                         <div class="quantity-controls">
                             <button class="quantity-btn minus" onclick="updateQuantity('שניצלונים מטוגנים', -1)">-</button>
                             <span class="quantity-display" id="qty-שניצלונים מטוגנים">0</span>
                             <button class="quantity-btn plus" onclick="updateQuantity('שניצלונים מטוגנים', 1)">+</button>
                         </div>
                     </div>
-                    <div class="menu-item" data-name="קציצות ברוטב אדום" data-price="30">
+                    <div class="menu-item" data-name="קציצות ברוטב אדום" data-price="41">
                         <h4>קציצות ברוטב אדום</h4>
                         <p>קציצות בשר עסיסיות ברוטב עגבניות מתובל</p>
-                        <div class="price">₪30</div>
+                        <div class="price">₪79</div>
                         <div class="quantity-controls">
                             <button class="quantity-btn minus" onclick="updateQuantity('קציצות ברוטב אדום', -1)">-</button>
                             <span class="quantity-display" id="qty-קציצות ברוטב אדום">0</span>
                             <button class="quantity-btn plus" onclick="updateQuantity('קציצות ברוטב אדום', 1)">+</button>
                         </div>
                     </div>
-                    <div class="menu-item" data-name="דג מרוקאי" data-price="38">
+                    <div class="menu-item" data-name="דג מרוקאי" data-price="51">
                         <h4>דג מרוקאי</h4>
                         <p>דג טרי מתובל בתבלינים מרוקאיים אותנטיים</p>
-                        <div class="price">₪38</div>
+                        <div class="price">₪79</div>
                         <div class="quantity-controls">
                             <button class="quantity-btn minus" onclick="updateQuantity('דג מרוקאי', -1)">-</button>
                             <span class="quantity-display" id="qty-דג מרוקאי">0</span>
                             <button class="quantity-btn plus" onclick="updateQuantity('דג מרוקאי', 1)">+</button>
                         </div>
                     </div>
-                    <div class="menu-item" data-name="בשר ראש" data-price="42">
+                    <div class="menu-item" data-name="בשר ראש" data-price="57">
                         <h4>בשר ראש</h4>
                         <p>מנת בשר מיוחדת מבושלת בסגנון מרוקאי מסורתי</p>
-                        <div class="price">₪42</div>
+                        <div class="price">₪89</div>
                         <div class="quantity-controls">
                             <button class="quantity-btn minus" onclick="updateQuantity('בשר ראש', -1)">-</button>
                             <span class="quantity-display" id="qty-בשר ראש">0</span>
@@ -625,7 +667,12 @@
             <h2>🚚 משלוחים</h2>
             <p>אנחנו מגיעים עד אליכם! משלוחים חמים וטריים</p>
             <p><strong>אזורי משלוח: ניצן ויישובי הסביבה</strong></p>
-            <a href="#contact" class="contact-btn">הזמינו עכשיו</a>
+            <div class="delivery-buttons">
+                <a href="#contact" class="contact-btn">הזמינו עכשיו</a>
+                <button class="driver-btn" onclick="contactDriver()">
+                    🚗 צור קשר עם השליח
+                </button>
+            </div>
         </section>
     </div>
 
@@ -645,6 +692,7 @@
             <div class="modal-buttons">
                 <button class="modal-btn btn-primary" onclick="sendWhatsApp()">שלח הזמנה בוואטסאפ</button>
                 <button class="modal-btn btn-secondary" onclick="closeOrderModal()">המשך קניות</button>
+                <button class="modal-btn btn-danger" onclick="resetOrder()">אפס הזמנה</button>
             </div>
         </div>
     </div>
@@ -771,11 +819,37 @@
             message += '📞 טלפון ליצירת קשר: [יש למלא]\n\n';
             message += 'תודה רבה! 😊';
             
-            // Replace this phone number with the actual WhatsApp number
-            const phoneNumber = '972501234567'; // Example number - replace with actual
+            // Restaurant WhatsApp number
+            const phoneNumber = '972505846205';
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             
             window.open(whatsappUrl, '_blank');
+        }
+
+        // Contact delivery driver
+        function contactDriver() {
+            const message = 'היי, מה קורה עם המשלוח שלי?';
+            const phoneNumber = '972507500665';
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Reset order function
+        function resetOrder() {
+            // Clear the cart
+            cart = {};
+            
+            // Reset all quantity displays to 0
+            document.querySelectorAll('.quantity-display').forEach(display => {
+                display.textContent = '0';
+            });
+            
+            // Update cart display
+            updateCartDisplay();
+            
+            // Close the modal
+            closeOrderModal();
         }
 
         // Smooth scrolling for navigation links
