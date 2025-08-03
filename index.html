@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>המטבח של סבתא יפה | בישולים מרוקאים אותנטיים</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f8f4e6 0%, #e8dcc6 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #8b4513 0%, #d2691e 50%, #cd853f 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-100px) translateY(-100px); }
+            100% { transform: translateX(100px) translateY(100px); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(139, 69, 19, 0.95);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 0;
+            text-align: center;
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .about h2 {
+            color: #8b4513;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Menu Section */
+        .menu {
+            padding: 4rem 0;
+        }
+
+        .menu h2 {
+            text-align: center;
+            color: #8b4513;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .menu-category {
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #d2691e, #cd853f);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .category-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-items {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .menu-item {
+            padding: 1.5rem;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            border-color: #d2691e;
+            background: #faf8f5;
+            transform: scale(1.02);
+        }
+
+        .menu-item h4 {
+            color: #8b4513;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #d2691e;
+            margin: 0.5rem 0;
+        }
+
+        .quantity-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .quantity-btn {
+            background: #d2691e;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: #8b4513;
+            transform: scale(1.1);
+        }
+
+        .quantity-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .quantity-display {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #8b4513;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .cart-summary {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #8b4513, #d2691e);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cart-summary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+        }
+
+        .cart-count {
+            background: white;
+            color: #8b4513;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .order-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            direction: rtl;
+        }
+
+        .modal-header {
+            text-align: center;
+            color: #8b4513;
+            margin-bottom: 1.5rem;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #8b4513;
+            text-align: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f4e6;
+            border-radius: 10px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8b4513, #d2691e);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #8b4513;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Delivery Section */
+        .delivery {
+            background: linear-gradient(135deg, #8b4513, #d2691e);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin: 2rem 0;
+            border-radius: 20px;
+        }
+
+        .delivery h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .delivery p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background: white;
+            color: #8b4513;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #8b4513;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Decorative elements */
+        .spice-decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.6; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="spice-decoration" style="top: 10%; left: 10%;"></div>
+        <div class="spice-decoration" style="top: 20%; right: 15%; animation-delay: 2s;"></div>
+        <div class="container">
+            <h1>המטבח של סבתא יפה</h1>
+            <p class="subtitle">בישולים מרוקאים אותנטיים עם אהבה וטעם של פעם</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#about">אודות</a></li>
+                <li><a href="#menu">התפריט</a></li>
+                <li><a href="#delivery">משלוחים</a></li>
+                <li><a href="#contact">צור קשר</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="about" id="about">
+            <h2>ברוכים הבאים למטבח של סבתא יפה</h2>
+            <p>
+                כאן, במטבח הקטן והחם שלנו, אנחנו מכינים בכל יום מחדש את המנות המרוקאיות האותנטיות 
+                שעברו מדור לדור. סבתא יפה, עם ידיה המיומנות וליבה הרחב, שומרת על המסורת הקולינרית 
+                המרוקאית המקורית ומביאה לכם טעמים של בית, של משפחה, של אהבה אמיתית.
+                <br><br>
+                כל מנה מוכנת בקפידה, עם התבלינים המיוחדים והמתכונים הסודיים שנשמרו במשפחה 
+                במשך עשרות שנים. מהסלטים הצבעוניים ועד המנות הראשיות הערניות - כל ביס הוא מסע 
+                קולינרי למרוקו המסורתית.
+            </p>
+        </section>
+
+        <section class="menu" id="menu">
+            <h2>התפריט שלנו</h2>
+
+            <div class="menu-category">
+                <div class="category-header">
+                    <h3>🥗 סלטים</h3>
+                    <p>סלטים מרוקאיים מסורתיים בטעמים אותנטיים</p>
+                </div>
+                <div class="menu-items">
+                    <div class="menu-item" data-name="מטבוחה" data-price="18">
+                        <h4>מטבוחה</h4>
+                        <p>סלט חצילים וגמבה מבושל ברוטב עגבניות עשיר</p>
+                        <div class="price">₪18</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus" onclick="updateQuantity('מטבוחה', -1)">-</button>
+                            <span class="quantity-display" id="qty-מטבוחה">0</span>
+                            <button class="quantity-btn plus" onclick="updateQuantity('מטבוחה', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="menu-item" data-name="גזר מרוקאי" data-price="15">
+                        <h4>גזר מרוקאי</h4>
+                        <p>גזר מתוק ומתובל בכמון וכוסברה טרייה</p>
+                        <div class="price">₪15</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus" onclick="updateQuantity('גזר מרוקאי', -1)">-</button>
+                            <span class="quantity-display" id="qty-גזר מרוקאי">0</span>
+                            <button class="quantity-btn plus" onclick="updateQuantity('גזר מרוקאי', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="menu-item" data-name="זיתים ברוטב" data-price="16">
+                        <h4>זיתים ברוטב</h4>
+                        <p>זיתים טריים ברוטב שמן זית ותבלינים</p>
+                        <div class="price">₪16</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus" onclick="updateQuantity('זיתים ברוטב', -1)">-</button>
+                            <span class="quantity-display" id="qty-זיתים ברוטב">0</span>
+                            <button class="quantity-btn plus" onclick="updateQuantity('זיתים ברוטב', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="menu-item" data-name="סלק מבושל" data-price="14">
+                        <h4>סלק מבושל</h4>
+                        <p>סלק רך ומתובל בשמן זית ועשבי תיבול</p>
+                        <div class="price">₪14</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus" onclick="updateQuantity('סלק מבושל', -1)">-</button>
+                            <span class="quantity-display" id="qty-סלק מבושל">0</span>
+                            <button class="quantity-btn plus" onclick="updateQuantity('סלק מבושל', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="menu-item" data-name="גרגירי חומוס מרוקאי" data-price="17">
+                        <h4>גרגירי חומוס מרוקאי</h4>
+                        <p>חומוס מבושל בתבלינים מרוקאיים מיוחדים</p>
+                        <div class="price">₪17</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus" onclick="updateQuantity('גרגירי חומוס מרוקאי', -1)">-</button>
+                            <span class="quantity-display" id="qty-גרגירי חומוס מרוקאי">0</span>
+                            <button class="quantity-btn plus" onclick="updateQuantity('גרגירי חומוס מרוקאי', 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <div class="category-header">
+                    <h3>🍽️ מנות ראשונות</h3>
+                    <p>מנות פתיחה חמות ומזינות</p>
+                </div>
+                <div class="menu-items">
+                    <div class="menu-item" data-name="פשטידה" data-price="25">
+                        <h4>פשטידה</h4>
+                        <p>פשטידה מרוקאית מסורתית עם ירקות ועשבי תיבול</p>
+                        <div class="price">₪25</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus" onclick="updateQuantity('פשטידה', -1)">-</button>
+                            <span class="quantity-display" id="qty-פשטידה">0</span>
+                            <button class="quantity-btn plus" onclick="updateQuantity('פשטידה', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="menu-item" data-name="משה בתיבה" data-price="28">
+                        <h4>משה בתיבה</h4>
+                        <p>מנה מרוקאית מיוחדת עם ירקות ובשר</p>
+                        <div class="price">₪28</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus" onclick="updateQuantity('משה בתיבה', -1)">-</button>
+                            <span class="quantity-display" id="qty-משה בתיבה">0</span>
+                            <button class="quantity-btn plus" onclick="updateQuantity('משה בתיבה', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="menu-item" data-name="איטריות מבושלות" data-price="22">
+                        <h4>איטריות מבושלות</h4>
+                        <p>איטריות דקות ברוטב עגבניות ותבלינים</p>
+                        <div class="price">₪22</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus" onclick="updateQuantity('איטריות מבושלות', -1)">-</button>
+                            <span class="quantity-display" id="qty-איטריות מבושלות">0</span>
+                            <button class="quantity-btn plus" onclick="updateQuantity('איטריות מבושלות', 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <div class="category-header">
+                    <h3>🍖 מנות עיקריות</h3>
+                    <p>המנות הראשיות שלנו - מוכנות באהבה</p>
+                </div>
+                <div class="menu-items">
+                    <div class="menu-item" data-name="כנפיים ברוטב" data-price="35">
+                        <h4>כנפיים ברוטב</h4>
+                        <p>כנפי עוף רכות ברוטב עגבניות עשיר ומתובל</p>
+                        <div class="price">₪35</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus" onclick="updateQuantity('כנפיים ברוטב', -1)">-</button>
+                            <span class="quantity-display" id="qty-כנפיים ברוטב">0</span>
+                            <button class="quantity-btn plus" onclick="updateQuantity('כנפיים ברוטב', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="menu-item" data-name="שניצלונים מטוגנים" data-price="32">
+                        <h4>שניצלונים מטוגנים</h4>
+                        <p>שניצלונים זהובים וקריספיים בסגנון מרוקאי</p>
+                        <div class="price">₪32</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus" onclick="updateQuantity('שניצלונים מטוגנים', -1)">-</button>
+                            <span class="quantity-display" id="qty-שניצלונים מטוגנים">0</span>
+                            <button class="quantity-btn plus" onclick="updateQuantity('שניצלונים מטוגנים', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="menu-item" data-name="קציצות ברוטב אדום" data-price="30">
+                        <h4>קציצות ברוטב אדום</h4>
+                        <p>קציצות בשר עסיסיות ברוטב עגבניות מתובל</p>
+                        <div class="price">₪30</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus" onclick="updateQuantity('קציצות ברוטב אדום', -1)">-</button>
+                            <span class="quantity-display" id="qty-קציצות ברוטב אדום">0</span>
+                            <button class="quantity-btn plus" onclick="updateQuantity('קציצות ברוטב אדום', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="menu-item" data-name="דג מרוקאי" data-price="38">
+                        <h4>דג מרוקאי</h4>
+                        <p>דג טרי מתובל בתבלינים מרוקאיים אותנטיים</p>
+                        <div class="price">₪38</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus" onclick="updateQuantity('דג מרוקאי', -1)">-</button>
+                            <span class="quantity-display" id="qty-דג מרוקאי">0</span>
+                            <button class="quantity-btn plus" onclick="updateQuantity('דג מרוקאי', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="menu-item" data-name="בשר ראש" data-price="42">
+                        <h4>בשר ראש</h4>
+                        <p>מנת בשר מיוחדת מבושלת בסגנון מרוקאי מסורתי</p>
+                        <div class="price">₪42</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus" onclick="updateQuantity('בשר ראש', -1)">-</button>
+                            <span class="quantity-display" id="qty-בשר ראש">0</span>
+                            <button class="quantity-btn plus" onclick="updateQuantity('בשר ראש', 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="delivery" id="delivery">
+            <h2>🚚 משלוחים</h2>
+            <p>אנחנו מגיעים עד אליכם! משלוחים חמים וטריים</p>
+            <p><strong>אזורי משלוח: ניצן ויישובי הסביבה</strong></p>
+            <a href="#contact" class="contact-btn">הזמינו עכשיו</a>
+        </section>
+    </div>
+
+    <!-- Cart Summary -->
+    <div class="cart-summary" id="cartSummary" onclick="showOrderModal()" style="display: none;">
+        🛒 עגלת קניות <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <!-- Order Modal -->
+    <div class="order-modal" id="orderModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>סיכום ההזמנה</h2>
+            </div>
+            <div id="orderDetails"></div>
+            <div class="order-total" id="orderTotal"></div>
+            <div class="modal-buttons">
+                <button class="modal-btn btn-primary" onclick="sendWhatsApp()">שלח הזמנה בוואטסאפ</button>
+                <button class="modal-btn btn-secondary" onclick="closeOrderModal()">המשך קניות</button>
+            </div>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <div class="container">
+            <h3>המטבח של סבתא יפה</h3>
+            <p>טעמים מרוקאיים אותנטיים | משלוחים לניצן והסביבה</p>
+            <p>📞 להזמנות: פנו אלינו בטלפון</p>
+            <p>💝 מבושל באהבה, מוגש בטעם</p>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality using memory storage (instead of localStorage)
+        let cart = {};
+
+        // Load cart from memory on page load
+        function loadCart() {
+            // Initialize empty cart if none exists
+            if (!cart) {
+                cart = {};
+            }
+            updateCartDisplay();
+        }
+
+        // Save cart to memory
+        function saveCart() {
+            // Cart is already in memory, just update display
+            updateCartDisplay();
+        }
+
+        // Update quantity function
+        function updateQuantity(itemName, change) {
+            if (!cart[itemName]) {
+                cart[itemName] = { quantity: 0, price: 0 };
+            }
+            
+            const newQuantity = cart[itemName].quantity + change;
+            
+            if (newQuantity <= 0) {
+                delete cart[itemName];
+            } else {
+                cart[itemName].quantity = newQuantity;
+                // Get price from data attribute
+                const menuItem = document.querySelector(`[data-name="${itemName}"]`);
+                cart[itemName].price = parseInt(menuItem.dataset.price);
+            }
+            
+            // Update display
+            document.getElementById(`qty-${itemName}`).textContent = 
+                cart[itemName] ? cart[itemName].quantity : 0;
+            
+            saveCart();
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            const cartSummary = document.getElementById('cartSummary');
+            const cartCount = document.getElementById('cartCount');
+            
+            let totalItems = 0;
+            for (let item in cart) {
+                totalItems += cart[item].quantity;
+                // Update quantity display
+                const qtyElement = document.getElementById(`qty-${item}`);
+                if (qtyElement) {
+                    qtyElement.textContent = cart[item].quantity;
+                }
+            }
+            
+            if (totalItems > 0) {
+                cartSummary.style.display = 'block';
+                cartCount.textContent = totalItems;
+            } else {
+                cartSummary.style.display = 'none';
+            }
+        }
+
+        // Show order modal
+        function showOrderModal() {
+            const modal = document.getElementById('orderModal');
+            const orderDetails = document.getElementById('orderDetails');
+            const orderTotal = document.getElementById('orderTotal');
+            
+            let html = '';
+            let total = 0;
+            
+            for (let item in cart) {
+                const itemTotal = cart[item].quantity * cart[item].price;
+                total += itemTotal;
+                
+                html += `
+                    <div class="order-item">
+                        <span>${item}</span>
+                        <span>${cart[item].quantity} × ₪${cart[item].price} = ₪${itemTotal}</span>
+                    </div>
+                `;
+            }
+            
+            orderDetails.innerHTML = html;
+            orderTotal.innerHTML = `סה"כ: ₪${total}`;
+            modal.style.display = 'flex';
+        }
+
+        // Close order modal
+        function closeOrderModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+
+        // Send WhatsApp message
+        function sendWhatsApp() {
+            let message = '🍽️ הזמנה חדשה למטבח של סבתא יפה\n\n';
+            let total = 0;
+            
+            for (let item in cart) {
+                const itemTotal = cart[item].quantity * cart[item].price;
+                total += itemTotal;
+                message += `• ${item} - ${cart[item].quantity} יחידות - ₪${itemTotal}\n`;
+            }
+            
+            message += `\n💰 סה"כ: ₪${total}\n\n`;
+            message += '📍 כתובת למשלוח: [יש למלא]\n';
+            message += '📞 טלפון ליצירת קשר: [יש למלא]\n\n';
+            message += 'תודה רבה! 😊';
+            
+            // Replace this phone number with the actual WhatsApp number
+            const phoneNumber = '972501234567'; // Example number - replace with actual
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add hover effect to menu items
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('hover-active')) {
+                    this.style.background = 'linear-gradient(135deg, #faf8f5, #f5f1ea)';
+                    this.classList.add('hover-active');
+                }
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.background = '';
+                this.classList.remove('hover-active');
+            });
+        });
+
+        // Contact button animation
+        document.querySelector('.contact-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#menu').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('orderModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeOrderModal();
+            }
+        });
+
+        // Initialize cart on page load
+        window.addEventListener('load', loadCart);
+    </script>
+</body>
+</html>
