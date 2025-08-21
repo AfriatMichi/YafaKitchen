@@ -4,179 +4,167 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Company Portal</title>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
-    :root {
-      --bg: #f0f4ff;
-      --text: #333;
-      --app-bar-bg: linear-gradient(to right, #6a11cb, #2575fc);
-    }
-
-    body {
+    /* Reset and base styles */
+    * {
       margin: 0;
-      font-family: 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      align-items: center;
+      padding: 40px 20px 80px; /* extra padding for bottom nav */
+      position: relative;
     }
 
-    .app-bar {
-      background: var(--app-bar-bg);
-      color: white;
-      padding: 20px;
-      text-align: center;
-      font-size: 24px;
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
       font-weight: bold;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
-    .container {
+    /* Grid layout for app icons */
+    .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 20px;
-      padding: 30px;
+      gap: 25px;
+      width: 100%;
+      max-width: 700px;
       flex: 1;
     }
 
-    .card {
-      background-color: white;
-      border-radius: 24px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    /* Card styles */
+    .icon-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
       padding: 20px;
       text-align: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+    .icon-card:hover {
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
     }
 
-    .card:hover {
-      transform: scale(1.05);
+    /* Icon styles */
+    .icon-card img {
+      width: 50px;
+      height: 50px;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+      margin-bottom: 12px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    .icon-card:hover img {
+      transform: rotate(5deg) scale(1.1);
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
     }
 
-    .material-icons {
-      font-size: 36px;
-      margin-bottom: 10px;
-      color: white;
-      padding: 16px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    .dashboard { background-color: #4caf50; }
-    .reports { background-color: #2196f3; }
-    .messages { background-color: #ff9800; }
-    .settings { background-color: #9c27b0; }
-    .support { background-color: #f44336; }
-
-    .label {
-      font-size: 14px;
+    /* Label text */
+    .icon-label {
+      font-size: 16px;
       font-weight: 500;
-      color: var(--text);
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
     }
 
-    .work-section {
-      display: flex;
-      justify-content: space-around;
-      padding: 20px;
-      background: #ffffff;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-      border-top: 1px solid #ddd;
-    }
-
-    .work-button {
-      flex: 1;
-      margin: 0 10px;
-      background-color: #e3f2fd;
-      border-radius: 16px;
-      padding: 10px;
-      text-align: center;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .work-button:hover {
-      background-color: #bbdefb;
-    }
-
+    /* Bottom navigation */
     .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
       display: flex;
       justify-content: space-around;
-      background: #ffffff;
-      padding: 10px 0;
-      border-top: 1px solid #ccc;
+      align-items: center;
+      box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
     }
-
-    .nav-item {
-      text-align: center;
+    .nav-button {
       flex: 1;
-      color: #666;
+      text-align: center;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      transition: color 0.3s;
     }
-
-    .nav-item .material-icons {
-      font-size: 28px;
+    .nav-button:hover {
+      color: #ffdf5d;
+    }
+    .nav-button img {
       display: block;
+      margin: 0 auto 5px;
+      width: 24px;
+      height: 24px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
     }
 
-    @media (max-width: 500px) {
-      .container {
-        grid-template-columns: repeat(2, 1fr);
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      .icon-label {
+        font-size: 14px;
       }
     }
   </style>
 </head>
 <body>
+  <h1>Company Portal</h1>
 
-  <div class="app-bar">🚀 Company Portal</div>
-
-  <div class="container">
-    <div class="card" onclick="handleClick('Dashboard')">
-      <span class="material-icons dashboard">dashboard</span>
-      <div class="label">Dashboard</div>
+  <div class="grid">
+    <div class="icon-card" onclick="openLink('https://example.com/home')">
+      <img src="https://img.icons8.com/color/96/home--v1.png" alt="Home">
+      <div class="icon-label">Home</div>
     </div>
-    <div class="card" onclick="handleClick('Reports')">
-      <span class="material-icons reports">bar_chart</span>
-      <div class="label">Reports</div>
+    <div class="icon-card" onclick="openLink('https://example.com/employees')">
+      <img src="https://img.icons8.com/color/96/group.png" alt="Employees">
+      <div class="icon-label">Employees</div>
     </div>
-    <div class="card" onclick="handleClick('Messages')">
-      <span class="material-icons messages">message</span>
-      <div class="label">Messages</div>
+    <div class="icon-card" onclick="openLink('https://example.com/documents')">
+      <img src="https://img.icons8.com/color/96/documents.png" alt="Documents">
+      <div class="icon-label">Documents</div>
     </div>
-    <div class="card" onclick="handleClick('Settings')">
-      <span class="material-icons settings">settings</span>
-      <div class="label">Settings</div>
-    </div>
-    <div class="card" onclick="handleClick('Support')">
-      <span class="material-icons support">support_agent</span>
-      <div class="label">Support</div>
+    <div class="icon-card" onclick="openLink('https://example.com/settings')">
+      <img src="https://img.icons8.com/color/96/settings.png" alt="Settings">
+      <div class="icon-label">Settings</div>
     </div>
   </div>
 
-  <div class="work-section">
-    <div class="work-button" onclick="handleClick('Tasks')">📋 Tasks</div>
-    <div class="work-button" onclick="handleClick('Calendar')">📅 Calendar</div>
-    <div class="work-button" onclick="handleClick('Files')">📁 Files</div>
-  </div>
-
+  <!-- Bottom Navigation -->
   <div class="bottom-nav">
-    <div class="nav-item" onclick="handleClick('Home')">
-      <span class="material-icons">home</span>Home
+    <div class="nav-button" onclick="alert('Main button clicked!')">
+      <img src="https://img.icons8.com/fluency/48/home.png" alt="Main">
+      Main
     </div>
-    <div class="nav-item" onclick="handleClick('Work')">
-      <span class="material-icons">work</span>Work
+    <div class="nav-button" onclick="alert('Work button clicked!')">
+      <img src="https://img.icons8.com/fluency/48/briefcase.png" alt="Work">
+      Work
     </div>
-    <div class="nav-item" onclick="handleClick('Profile')">
-      <span class="material-icons">person</span>Profile
+    <div class="nav-button" onclick="alert('Settings button clicked!')">
+      <img src="https://img.icons8.com/fluency/48/settings.png" alt="Settings">
+      Settings
     </div>
   </div>
 
   <script>
-    function handleClick(target) {
-      alert(`Navigating to: ${target}`);
+    function openLink(url) {
+      window.open(url, "_blank");
     }
   </script>
-
 </body>
 </html>
